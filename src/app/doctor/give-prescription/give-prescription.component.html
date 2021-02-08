@@ -1,0 +1,21 @@
+<h1>Client</h1>
+<form [formGroup]="form" class="input-form">
+    <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Client ID</mat-label>
+        <input matInput formControlName="client_id" required>
+    </mat-form-field>
+
+    <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Medicine Name</mat-label>
+        <input matInput formControlName="medicine_name" required>
+    </mat-form-field>
+
+    <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Medicine ID</mat-label>
+        <input matInput formControlName="medicine_id" required>
+    </mat-form-field>
+
+    <div class="button-row">
+        <button mat-raised-button color="primary" (click)="givePerscription()">Give Prescription</button>
+    </div>
+</form>

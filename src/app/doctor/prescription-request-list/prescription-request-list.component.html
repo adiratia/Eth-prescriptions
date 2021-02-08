@@ -1,0 +1,54 @@
+<form>
+    <h1>Request List</h1>
+    <mat-form-field appearance="outline">
+        <mat-label>Search...</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="" #input>
+    </mat-form-field>
+
+    <div class="mat-elevation-z1">
+        <table mat-table [dataSource]="dataSource" matSort>
+
+            <!-- ID Column -->
+            <ng-container matColumnDef="client_id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Client ID </th>
+                <td mat-cell *matCellDef="let row"> {{row.client_id}} </td>
+            </ng-container>
+
+            <!-- Progress Column -->
+            <ng-container matColumnDef="client_name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Client Name </th>
+                <td mat-cell *matCellDef="let row"> {{row.client_name}} </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="medicine_id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Medicine ID </th>
+                <td mat-cell *matCellDef="let row"> {{row.medicine_id}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="medicine_name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Medicine Name </th>
+                <td mat-cell *matCellDef="let row"> {{row.medicine_name}}</td>
+            </ng-container>
+
+            <!-- Update Column -->
+            <ng-container matColumnDef="update">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Accept / Decline</th>
+                <td mat-cell *matCellDef="let row; let i = index">
+                    <button mat-stroked-button (click)="accept(i, row)">Accept</button>
+                    <button mat-stroked-button color="warn" (click)="decline(i)">Decline</button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+            <!-- Row shown when there is no matching data. -->
+            <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+            </tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </div>
+</form>

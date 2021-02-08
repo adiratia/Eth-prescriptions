@@ -1,0 +1,22 @@
+{
+    "results": [
+        { "generic_name": "Lidocaine Hydrochloride", "brand_name": "West-Ward Pharmaceuticals Corp", "product_ndc": "0054-3505", "product_price": 7 },
+        { "generic_name": "Ethanol", "brand_name": "SORA KOZMETIK SANAYI TICARET ANONIM SIRKETI", "product_ndc": "77462-002", "product_price": 11 },
+        { "generic_name": "Oxytocin", "brand_name": "Humco Holding Group, Inc", "product_ndc": "0395-8162", "product_price": 5 },
+        { "generic_name": "KETOPROFEN", "brand_name": "Professional Compounding Centers of America dba PCCA", "product_ndc": "51927-0025", "product_price": 6 },
+        { "generic_name": "Rizatriptan Benzoate", "brand_name": "Aurobindo Pharma Limited", "product_ndc": "65862-600", "product_price": 13 },
+        { "generic_name": "Acetaminophen, Dextromethorphan HBr, Doxylamine succinate", "brand_name": "Rite Aid Corporation", "product_ndc": "11822-0335", "product_price": 1 },
+        { "generic_name": "SODIUM FLUORIDE", "brand_name": "Colgate-Palmolive", "product_ndc": "35000-332", "product_price": 4 },
+        { "generic_name": "icosapent ethyl", "brand_name": "Amarin Pharma Inc.", "product_ndc": "52937-001", "product_price": 3 },
+        { "generic_name": "ANEMONE PULSATILLA", "brand_name": "Boiron", "product_ndc": "0220-4184", "product_price": 9 },
+        { "generic_name": "NAPROXEN", "brand_name": "Direct RX", "product_ndc": "61919-376", "product_price": 5 },
+        { "generic_name": "Ibuprofen", "brand_name": "CHAIN DRUG MARKETING ASSOCIATION INC", "product_ndc": "63868-773", "product_price": 3 },
+        { "generic_name": "Triamcinolone acetonide", "brand_name": "Ascend Laboratories, LLC", "product_ndc": "67877-251", "product_price": 12 },
+        { "generic_name": "levonorgestrel and ethinyl estradiol", "brand_name": "Amneal Pharmaceuticals NY LLC", "product_ndc": "69238-1554", "product_price": 11 },
+        { "generic_name": "Clindamycin Hydrochloride", "brand_name": "Cadila Healthcare Limited", "product_ndc": "70771-1183", "product_price": 8 },
+        { "generic_name": "RAMELTEON", "brand_name": "DIRECT RX", "product_ndc": "72189-153", "product_price": 6 },
+        { "generic_name": "milnacipran hydrochloride", "brand_name": "Allergan, Inc.", "product_ndc": "0456-1500", "product_price": 5 },
+        { "generic_name": "Ethyl Alcohol", "brand_name": "Velocity Beauty Group LLC", "product_ndc": "78686-070", "product_price": 10 },
+        { "generic_name": "Nisoldipine", "brand_name": "Skyepharma Production SAS", "product_ndc": "13672-041", "product_price": 12 }
+    ]
+}
