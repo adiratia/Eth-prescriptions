@@ -5,55 +5,60 @@ import Web3 from 'web3';
 
 declare var window: any;
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class Web3Service {
   public web3: Web3;
   public currentAccount;
+  public premittedAccounts: [];
 
   constructor() {
-      this.checkAndInstantiateWeb3();
+    this.checkAndInstantiateWeb3();
 
-      this.web3.eth.getAccounts((err, acc) => {                
-        if (!err && acc.length != 0) {
-          this.currentAccount = acc[0];
-        }
-      }); 
+    this.web3.eth.getAccounts((err, acc) => {
+      if (!err && acc.length !== 0) {
+        this.currentAccount = acc[0];
+      }
+    });
   }
 
   checkAndInstantiateWeb3() {
     // Checking if Web3 has been injected by the browser (Mist/MetaMask)
     if (typeof window.web3 !== 'undefined') {
-      console.warn(
-        'Using web3 detected from external source. If you find that your accounts don\'t appear or you have 0 MetaCoin, ensure you\'ve configured that source properly. If using MetaMask, see the following link. Feel free to delete this warning. :) http://truffleframework.com/tutorials/truffle-and-metamask'
-      );
       // Use Mist/MetaMask's provider
-      this.web3 = new Web3(window.web3.currentProvider);   
+      // this.web3 = new Web3(window.web3.currentProvider);
+      this.web3 = new Web3(window.ethereum);
     } else {
-      console.warn(
-        'No web3 detected. Falling back to ${environment.HttpProvider}. You should remove this fallback when you deploy live, as it\'s inherently insecure. Consider switching to Metamask for development. More info here: http://truffleframework.com/tutorials/truffle-and-metamask'
-      );
       // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
-    this.web3 = new Web3(
-      new Web3.providers.HttpProvider(environment.HttpProvider)
-      );      
+      this.web3 = new Web3(
+        new Web3.providers.HttpProvider(environment.HttpProvider)
+      );
     }
+
+    window.ethereum.on('accountsChanged', () => {
+      location.reload();
+    });
   }
 
-  getAccounts(): Observable<any> {
-  	return new Observable(observer => {
-      this.web3.eth.getAccounts((err, accs) => {                
-  	    if (err != null) {
-  	      observer.error('There was an error fetching your accounts.')
-  	    }
+  connect() {
+    window.ethereum
+      .request({ method: 'eth_requestAccounts' })
+      .then(() => {
+        location.reload();
+      })
+      .catch((err) => {
+        if (err.code === 4001) {
+          // EIP-1193 userRejectedRequest error
+          // If this happens, the user rejected the connection request.
+          console.log('Please connect to MetaMask.');
+          alert('Please connect to MetaMask.');
+        } else {
+          console.error(err);
+        }
+      });
+  }
 
-  	    if (accs.length === 0) {
-  	      observer.error('Couldn\'t get any accounts! Make sure your Ethereum client is configured correctly.')
-  	    }
-
-  	    observer.next(accs)
-  	    observer.complete()
-  	  });
-    })
+  isDeployer(): boolean {
+    return this.currentAccount === environment.Deployer;
   }
 }

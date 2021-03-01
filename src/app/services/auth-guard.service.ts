@@ -1,19 +1,28 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  CanActivate,
+  Router,
+  RouterStateSnapshot,
+} from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { Web3Service } from './web3.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthGuardService implements CanActivate {
+  premmited;
 
-  constructor(private web3Service: Web3Service, private router: Router) { }
+  constructor(private web3Service: Web3Service, private router: Router) {}
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): boolean {
     if (this.web3Service.currentAccount === environment.Deployer) {
       return true;
-    }
+    } else if (this.web3Service.currentAccount) return true;
     this.router.navigate(['/home']);
     return false;
   }

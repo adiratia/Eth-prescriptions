@@ -9,17 +9,17 @@
         <table mat-table [dataSource]="dataSource" matSort>
 
             <!-- ID Column -->
+            <ng-container matColumnDef="request_number">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+                <td mat-cell *matCellDef="let row"> {{row.request_number + 1}} </td>
+            </ng-container>
+
+            <!-- Progress Column -->
             <ng-container matColumnDef="client_id">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Client ID </th>
                 <td mat-cell *matCellDef="let row"> {{row.client_id}} </td>
             </ng-container>
-
-            <!-- Progress Column -->
-            <ng-container matColumnDef="client_name">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Client Name </th>
-                <td mat-cell *matCellDef="let row"> {{row.client_name}} </td>
-            </ng-container>
-
+            
             <!-- Name Column -->
             <ng-container matColumnDef="medicine_id">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Medicine ID </th>
@@ -30,13 +30,19 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Medicine Name </th>
                 <td mat-cell *matCellDef="let row"> {{row.medicine_name}}</td>
             </ng-container>
+            
+            <ng-container matColumnDef="request_date">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Request Date </th>
+                <td mat-cell *matCellDef="let row"> {{ row.request_date | date }}</td>
+            </ng-container>
 
             <!-- Update Column -->
             <ng-container matColumnDef="update">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Accept / Decline</th>
-                <td mat-cell *matCellDef="let row; let i = index">
-                    <button mat-stroked-button (click)="accept(i, row)">Accept</button>
-                    <button mat-stroked-button color="warn" (click)="decline(i)">Decline</button>
+                <td mat-cell *matCellDef="let row">
+                    <!-- <button mat-stroked-button (click)="accept(row.request_number, row)">Accept</button> -->
+                    <button mat-stroked-button (click)="openDialog(row.request_number, row)">Accept</button>
+                    <button mat-stroked-button color="warn" (click)="decline(row.request_number)">Decline</button>
                 </td>
             </ng-container>
 

@@ -4,10 +4,10 @@
 
 export const environment = {
   production: false,
-  HttpProvider: "http://localhost:8545",
-  MedicineContract: "0x27EC9369Cbb43D5EB10A8236dEC2Ea5e5718323e",
-  ClientContract: "0xfF5E672A53E45759f91A7FA5e88D62D74E3e145A",
-  Deployer: "0xe092b1fa25DF5786D151246E492Eed3d15EA4dAA"
+  HttpProvider: 'http://localhost:8545',
+  MedicineContract: '0xc371880913b8b0F8D051A58fce5457C54EfC0e57',
+  ClientContract: '0x27F5e91336ba660038C6b86c74EA9d2B0FC04b0f',
+  Deployer: '0xe092b1fa25DF5786D151246E492Eed3d15EA4dAA',
 };
 
 /*

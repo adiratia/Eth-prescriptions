@@ -3,4 +3,5 @@ export interface RequestData {
   client_id: string;
   medicine_id: string;
   medicine_name: string;
+  request_date: number;
 }

@@ -10,6 +10,5 @@ export class AppComponent {
   title = 'eth-prescriptions';
 
   constructor(private web3: Web3Service) {
-    
   }
 }

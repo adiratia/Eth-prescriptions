@@ -9,8 +9,41 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style type="text/css">
+        .loader {
+          display: flex;
+          height: 100vh;
+          align-items: center;
+          justify-content: center;
+        }
+
+        @keyframes arrows {
+          0%,
+          100% {
+            color: black;
+            transform: translateY(0);
+          }
+          50% {
+            color: #3AB493;
+            transform: translateY(20px);
+          }
+        }
+
+        .arrow {
+          --delay: 0s;
+          animation: arrows 1s var(--delay) infinite ease-in;
+        }
+    </style>
 </head>
 <body class="mat-typography">
-  <app-root></app-root>
+  <app-root>
+    <div class="loader">
+      <span class="arrow">↓</span>
+      <span class="arrow" style="--delay: 0.1s">↓</span>
+      <span class="arrow" style="--delay: 0.3s">↓</span>
+      <span class="arrow" style="--delay: 0.4s">↓</span>
+      <span class="arrow" style="--delay: 0.5s">↓</span>
+    </div>
+  </app-root>
 </body>
 </html>

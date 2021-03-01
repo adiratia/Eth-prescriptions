@@ -9,19 +9,34 @@ contract MedicineContract {
         string _brandName;
         uint _price;
     }
-    
-    address owner;
-    
+        
     uint public medicineCount = 0;
     Medicine[] public medicines;
     
+    address[] private permitted;
+    address owner;
+    
+    function onlyPermittedDoctor(address sender) public view returns(bool){
+        for(uint i; i < permitted.length; i++){
+            if(sender == permitted[i]){
+                return true;
+            }
+        }
+        return false;
+    }
+
     modifier isDoctor() {
-        require(msg.sender == owner, "caller is not a doctor");
+        require(onlyPermittedDoctor(msg.sender), 'caller is not a doctor');
         _;
     }
-    
+
     constructor() public {
         owner = msg.sender;
+        permitted.push(owner);
+    }
+    
+    function getPermittedList() public view returns(address[] memory) {
+        return permitted;
     }
     
     function addDrug(string memory _id, string memory _medicine, string memory _brandName, uint _price) public {
@@ -35,12 +50,11 @@ contract MedicineContract {
         for (uint i = index; i < medicines.length-1; i++){
             medicines[i] = medicines[i+1];
         }
-        delete(medicines[medicines.length-1]);
+        medicines.pop();
         medicineCount--;
     }
 
     function getMedicine(uint index) public view returns(string memory, string memory, string memory, uint) {
-        // if (index >= medicineCount) return ("","", "", 0);
         return (medicines[index]._id, medicines[index]._drugName, medicines[index]._brandName, medicines[index]._price);
     }
 }
